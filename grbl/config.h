@@ -34,12 +34,12 @@
 // NOTE: OEMs can avoid the need to maintain/update the defaults.h and cpu_map.h files and use only
 // one configuration file by placing their specific defaults and pin map at the bottom of this file.
 // If doing so, simply comment out these two defines and see instructions below.
-#define DEFAULTS_GENERIC
-#define CPU_MAP_2560_INITIAL
+//#define DEFAULTS_GENERIC
+//#define CPU_MAP_2560_INITIAL
 
 // To use with RAMPS 1.4 Board, comment out the above defines and uncomment the next two defines
-// #define DEFAULTS_RAMPS_BOARD
-// #define CPU_MAP_2560_RAMPS_BOARD
+#define DEFAULTS_RAMPS_BOARD
+#define CPU_MAP_2560_RAMPS_BOARD
 
 // Serial baud rate
 // #define BAUD_RATE 230400
@@ -109,7 +109,7 @@
 #ifdef DEFAULTS_RAMPS_BOARD
   #define HOMING_CYCLE_0 (1<<X_AXIS)   // Home X axis
   #define HOMING_CYCLE_1 (1<<Y_AXIS)   // Home Y axis
-  #define HOMING_CYCLE_2 (1<<Z_AXIS)   // OPTIONAL: Home Z axis 
+  // #define HOMING_CYCLE_2 (1<<Z_AXIS)   // OPTIONAL: Home Z axis 
 #else
   #define HOMING_CYCLE_0 (1<<Z_AXIS)                // REQUIRED: First move Z to clear workspace.
   #define HOMING_CYCLE_1 ((1<<X_AXIS)|(1<<Y_AXIS))  // OPTIONAL: Then move X,Y at the same time.
@@ -136,7 +136,7 @@
 // After homing, Grbl will set by default the entire machine space into negative space, as is typical
 // for professional CNC machines, regardless of where the limit switches are located. Uncomment this
 // define to force Grbl to always set the machine origin at the homed location despite switch orientation.
-// #define HOMING_FORCE_SET_ORIGIN // Uncomment to enable.
+#define HOMING_FORCE_SET_ORIGIN //enabled by rb
 
 // Number of blocks Grbl executes upon startup. These blocks are stored in EEPROM, where the size
 // and addresses are defined in settings.h. With the current settings, up to 2 startup blocks may
@@ -231,7 +231,7 @@
 // before initialization. If it detects a problem and the hard limits setting is enabled, Grbl will
 // simply message the user to check the limits and enter an alarm state, rather than idle. Grbl will
 // not throw an alarm message.
-#define CHECK_LIMITS_AT_INIT
+//#define CHECK_LIMITS_AT_INIT//disabled by rb
 
 // ---------------------------------------------------------------------------------------
 // ADVANCED CONFIGURATION OPTIONS:

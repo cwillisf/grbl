@@ -672,6 +672,46 @@ void stepper_init()
     DIRECTION_DDR(0) |= 1<<DIRECTION_BIT(0);
     DIRECTION_DDR(1) |= 1<<DIRECTION_BIT(1);
     DIRECTION_DDR(2) |= 1<<DIRECTION_BIT(2);
+
+    // ***** Begin MegaPi stepper init
+    DDRC |= 1 << 3;
+    DDRC |= 1 << 4;
+    DDRC |= 1 << 5;
+    DDRC |= 1 << 0;
+    DDRG |= 1 << 1;
+    DDRG |= 1 << 0;
+    DDRL |= 1 << 2;
+    DDRL |= 1 << 1;
+    DDRL |= 1 << 7;
+
+    //microstepping: 16 (LLH)
+    PORTC &= ~(1 << 3);
+    PORTC &= ~(1 << 4);
+    PORTC |= (1 << 5);
+
+    PORTC &= ~( 1 << 0);
+    PORTG &= ~(1 << 1);
+    PORTG |= (1 << 0);
+
+    PORTL &= ~(1 << 2);
+    PORTL &= ~(1 << 1);
+    PORTL |= (1 << 7);
+
+    /*
+    //microstepping: 32 (HHH)
+    PORTC |= (1 << 3);
+    PORTC |= (1 << 4);
+    PORTC |= (1 << 5);
+
+    PORTC |= ( 1 << 0);
+    PORTG |= (1 << 1);
+    PORTG |= (1 << 0);
+
+    PORTL |= (1 << 2);
+    PORTL |= (1 << 1);
+    PORTL |= (1 << 7);
+    */
+    // ***** End MegaPi stepper init
   #else
     STEP_DDR |= STEP_MASK;
     STEPPERS_DISABLE_DDR |= 1<<STEPPERS_DISABLE_BIT;
